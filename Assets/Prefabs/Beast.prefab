@@ -15,6 +15,8 @@ GameObject:
   - component: {fileID: 8518017886051962632}
   - component: {fileID: 8994558255042744699}
   - component: {fileID: 2427676288559708361}
+  - component: {fileID: 7133383247106450656}
+  - component: {fileID: 7907977333993419797}
   m_Layer: 0
   m_Name: Beast
   m_TagString: Untagged
@@ -186,13 +188,20 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   enemyStateID: 1
   states:
-  - EnemyStateID: 1
+  - enemyStateID: 1
     Actions:
     - {fileID: 2427676288559708361}
     Transitions:
-    - Decision: {fileID: 0}
-      TrueState: {fileID: 0}
-      FalseState: {fileID: 0}
+    - Decision: {fileID: 7133383247106450656}
+      TrueState: 3
+      FalseState: 1
+  - enemyStateID: 3
+    Actions:
+    - {fileID: 7907977333993419797}
+    Transitions:
+    - Decision: {fileID: 7133383247106450656}
+      TrueState: 3
+      FalseState: 1
 --- !u!114 &2427676288559708361
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -208,3 +217,33 @@ MonoBehaviour:
   moveSpeed: 4
   wanderTime: 3
   moveRange: {x: 4, y: 4}
+--- !u!114 &7133383247106450656
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3971333243077004553}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d44394622fb5e4b4ba01520b1429cce5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  aggroRange: 4
+  playerLayer:
+    serializedVersion: 2
+    m_Bits: 64
+--- !u!114 &7907977333993419797
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3971333243077004553}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f61f8dd74114e6d4b81070d933f66404, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  chaseSpeed: 3
+  stoppingDistance: 1

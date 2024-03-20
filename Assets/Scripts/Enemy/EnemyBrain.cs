@@ -30,10 +30,10 @@ public class EnemyBrain : MonoBehaviour
         CurrentState.UpdateState(this);
     }
 
-    public void UpdateState()
+    public void UpdateState(EnemyBrain brain)
     {
         CurrentState.ExecuteActions();
-        //CurrentState.ExecuteTransitions();
+        CurrentState.ExecuteTransitions(null);
     }
 
 
@@ -41,7 +41,7 @@ public class EnemyBrain : MonoBehaviour
     {
         for(int i = 0; i < states.Length; i++)
         {
-            if (states[i].EnemyStateID == enemyStateID)
+            if (states[i].enemyStateID == enemyStateID)
             {
                 return states[i];
             }
@@ -58,4 +58,5 @@ public class EnemyBrain : MonoBehaviour
 
         CurrentState = newState;
     }
+
 }

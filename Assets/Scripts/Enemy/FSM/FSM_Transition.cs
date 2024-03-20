@@ -7,6 +7,6 @@ using UnityEngine;
 public class FSM_Transition
 {
     public FSM_Decision Decision;
-    public EnemyBrain TrueState;
-    public EnemyBrain FalseState;
+    public EnemyStateID TrueState;
+    public EnemyStateID FalseState;
 }

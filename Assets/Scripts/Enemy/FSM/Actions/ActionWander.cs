@@ -21,8 +21,8 @@ public class ActionWander : FSM_Action
     {
         moveTimer -= Time.deltaTime;
 
-        var moveDirection = (moveDestination - transform.position).normalized;
-        var movement = moveDirection * (moveSpeed * Time.deltaTime);
+        Vector3 moveDirection = (moveDestination - transform.position).normalized;
+        Vector3 movement = moveDirection * (moveSpeed * Time.deltaTime);
 
         if (Vector3.Distance(transform.position, moveDestination) >= .5)
         {

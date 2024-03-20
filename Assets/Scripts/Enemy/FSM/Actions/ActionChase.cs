@@ -1,18 +1,33 @@
 using System.Collections;
 using System.Collections.Generic;
+using System.Security.Cryptography;
 using UnityEngine;
 
-public class ActionChase : MonoBehaviour
+public class ActionChase : FSM_Action
 {
-    // Start is called before the first frame update
-    void Start()
+    [SerializeField] float chaseSpeed;
+    [SerializeField] float stoppingDistance;
+
+    EnemyBrain enemyBrain;
+
+    private void Awake()
     {
-        
+        enemyBrain = GetComponent<EnemyBrain>();
     }
 
-    // Update is called once per frame
-    void Update()
+    public override void Act()
     {
-        
+        ChasePlayer();
+    }
+
+    private void ChasePlayer()
+    {
+        if (enemyBrain.Player == null)
+            return;
+
+        Vector3 direction = (enemyBrain.Player.position - transform.position);
+
+        if (direction.magnitude >= stoppingDistance)
+            transform.Translate(direction.normalized * (chaseSpeed * Time.deltaTime));
     }
 }

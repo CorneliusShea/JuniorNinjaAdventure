@@ -10,7 +10,7 @@ public enum EnemyStateID
 [System.Serializable]
 public class FSM_State
 {
-    public EnemyStateID EnemyStateID;
+    public EnemyStateID enemyStateID;
     public FSM_Action[] Actions;
     public FSM_Transition[] Transitions;
     
@@ -36,7 +36,7 @@ public class FSM_State
         
         for (int i = 0; i < Transitions.Length; i++)
         {
-            /*bool value = Transitions[i].Decision.Decide();
+           bool value = Transitions[i].Decision.Decide();
 
             if ( value)
             {
@@ -46,9 +46,9 @@ public class FSM_State
             else
             {
                 //execute false state
-                brain.ChangeState(Transitions[i].FalseState)
+                brain.ChangeState(Transitions[i].FalseState);
             }
-            */
+            
         }
     }
 }
