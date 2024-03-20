@@ -33,7 +33,7 @@ public class EnemyBrain : MonoBehaviour
     public void UpdateState()
     {
         CurrentState.ExecuteActions();
-        CurrentState.ExecuteTransitions();
+        //CurrentState.ExecuteTransitions();
     }
 
 

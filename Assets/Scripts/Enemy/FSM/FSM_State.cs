@@ -12,7 +12,7 @@ public class FSM_State
 {
     public EnemyStateID EnemyStateID;
     public FSM_Action[] Actions;
-    public FSM_Transition[] Transitions;'
+    public FSM_Transition[] Transitions;
     
 
     public void UpdateState(EnemyBrain brain)
