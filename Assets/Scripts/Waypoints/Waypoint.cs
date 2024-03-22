@@ -9,9 +9,12 @@ public class Waypoint : MonoBehaviour
     public Vector3[] Points => points;
     public Vector3 EntityPosition { get; set; }
 
+    bool gameStarted;
+
     private void Start()
     {
         EntityPosition = transform.position;
+        gameStarted = true;
     }
 
     public Vector3 GetPosition(int index)
@@ -21,7 +24,7 @@ public class Waypoint : MonoBehaviour
 
     private void OnDrawGizmos()
     {
-        if(transform.hasChanged)
+        if(!gameStarted && transform.hasChanged)
         {
             EntityPosition = transform.position;
         }
