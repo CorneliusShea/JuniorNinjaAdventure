@@ -2,17 +2,39 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class DecisionAttackRange : MonoBehaviour
+public class DecisionAttackRange : FSM_Decision
 {
-    // Start is called before the first frame update
-    void Start()
+    [SerializeField] float attackRange;
+    [SerializeField] LayerMask playerLayer;
+
+    EnemyBrain enemyBrain;
+
+    private void Awake()
     {
-        
+        enemyBrain = GetComponent<EnemyBrain>();
+    }
+    public override bool Decide()
+    {
+
+        return InAttackRange();
     }
 
-    // Update is called once per frame
-    void Update()
+    private bool InAttackRange()
     {
-        
+        if (enemyBrain.Player == null)
+            return false;
+
+        Collider2D playerCollider = Physics2D.OverlapCircle(transform.position, attackRange, playerLayer);
+
+        if (playerCollider != null)
+            return true;
+
+        return false;
+    }
+
+    private void OnDrawGizmosSelected()
+    {
+        Gizmos.color = Color.yellow;
+        Gizmos.DrawWireSphere(transform.position, attackRange);
     }
 }

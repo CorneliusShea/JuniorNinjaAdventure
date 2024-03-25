@@ -26,7 +26,7 @@ public class PlayerAnimations : MonoBehaviour
 
     public void HandleMoveAnimationBool(bool value)
     {
-        anim.SetBool(moveX, value);
+        anim.SetBool(isMoving, value);
 
     }
 

@@ -19,6 +19,7 @@ GameObject:
   - component: {fileID: 7133383247106450656}
   - component: {fileID: 7907977333993419797}
   - component: {fileID: 4963365104178054905}
+  - component: {fileID: 2528960641883096893}
   m_Layer: 0
   m_Name: Beast
   m_TagString: Untagged
@@ -189,10 +190,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   points:
-  - {x: 4.2848096, y: 2.0353222, z: 0}
-  - {x: 4.4260917, y: -2.9448743, z: 0}
-  - {x: -3.6623116, y: -2.9801946, z: 0}
-  - {x: -3.6269903, y: 2.0000029, z: 0}
+  - {x: 3.461741, y: 3.4877973, z: 0}
+  - {x: 3.6514387, y: -3.5258646, z: 0}
+  - {x: -3.5508423, y: -3.3528833, z: 0}
+  - {x: -3.5551887, y: 3.558145, z: 0}
 --- !u!114 &8994558255042744699
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -221,6 +222,12 @@ MonoBehaviour:
     - Decision: {fileID: 7133383247106450656}
       TrueState: 0
       FalseState: 2
+    - Decision: {fileID: 2528960641883096893}
+      TrueState: 4
+      FalseState: 0
+  - enemyStateID: 4
+    Actions: []
+    Transitions: []
 --- !u!114 &2427676288559708361
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -265,7 +272,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   chaseSpeed: 3
-  stoppingDistance: 1
+  stoppingDistance: 0.9
 --- !u!114 &4963365104178054905
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -279,3 +286,19 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   patrolSpeed: 3
+--- !u!114 &2528960641883096893
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3971333243077004553}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8e8b2c3b6431bfc4db1fa208e2931356, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  attackRange: 1
+  playerLayer:
+    serializedVersion: 2
+    m_Bits: 64
