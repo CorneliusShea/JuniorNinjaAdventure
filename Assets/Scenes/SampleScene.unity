@@ -283,6 +283,36 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &1267518464 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 3971333243077004553, guid: 3ed094185b7dcc542b05754b1f43368a, type: 3}
+  m_PrefabInstance: {fileID: 8899785438749379025}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &1267518465 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 2528960641883096893, guid: 3ed094185b7dcc542b05754b1f43368a, type: 3}
+  m_PrefabInstance: {fileID: 8899785438749379025}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1267518464}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8e8b2c3b6431bfc4db1fa208e2931356, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &1267518477
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1267518464}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 040c82aa9ca33b843bb125dac375a0fa, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  damage: 2
+  timeBetweenAttacks: 2
 --- !u!1 &1463128682
 GameObject:
   m_ObjectHideFlags: 0
@@ -1117,10 +1147,33 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 8994558255042744699, guid: 3ed094185b7dcc542b05754b1f43368a, type: 3}
+      propertyPath: states.Array.data[2].Actions.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8994558255042744699, guid: 3ed094185b7dcc542b05754b1f43368a, type: 3}
+      propertyPath: states.Array.data[2].Actions.Array.data[0]
+      value: 
+      objectReference: {fileID: 1267518477}
+    - target: {fileID: 8994558255042744699, guid: 3ed094185b7dcc542b05754b1f43368a, type: 3}
+      propertyPath: states.Array.data[2].Transitions.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8994558255042744699, guid: 3ed094185b7dcc542b05754b1f43368a, type: 3}
+      propertyPath: states.Array.data[2].Transitions.Array.data[0].Decision
+      value: 
+      objectReference: {fileID: 1267518465}
+    - target: {fileID: 8994558255042744699, guid: 3ed094185b7dcc542b05754b1f43368a, type: 3}
+      propertyPath: states.Array.data[2].Transitions.Array.data[0].FalseState
+      value: 3
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents: []
+    m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 3971333243077004553, guid: 3ed094185b7dcc542b05754b1f43368a, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 1267518477}
   m_SourcePrefab: {fileID: 100100000, guid: 3ed094185b7dcc542b05754b1f43368a, type: 3}
 --- !u!1660057539 &9223372036854775807
 SceneRoots:

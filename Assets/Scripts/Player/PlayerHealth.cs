@@ -13,19 +13,15 @@ public class PlayerHealth : MonoBehaviour, IDamagable
     {
         playerAnimations = GetComponent<PlayerAnimations>();
     }
-    void Update()
-    {
-        if(Input.GetKeyDown(KeyCode.Space))
-        {
-            if(playerStats.CurrentHealth > 0)
-                TakeDamage(1f);
-        }
-        
-    }
 
     public void TakeDamage(float amount)
     {
+        if (playerStats.CurrentHealth <= 0)
+            return;
+
         playerStats.CurrentHealth -= amount;
+
+        DamageManager.i.ShowDamageText(amount, this.transform);
 
         if (playerStats.CurrentHealth <= 0 ) 
         {
