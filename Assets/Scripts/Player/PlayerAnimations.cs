@@ -12,10 +12,16 @@ public class PlayerAnimations : MonoBehaviour
     readonly int isMoving = Animator.StringToHash("isMoving");
     readonly int gotKilled = Animator.StringToHash("gotKilled");
     readonly int revived = Animator.StringToHash("revived");
+    readonly int isAttacking = Animator.StringToHash("isAttacking");
 
     private void Awake()
     {
         anim = GetComponent<Animator>();
+    }
+
+    public void HandleAttackAnimation(bool value)
+    {
+        anim.SetBool(isAttacking, value);
     }
 
     public void HandleDeadAnimation()
