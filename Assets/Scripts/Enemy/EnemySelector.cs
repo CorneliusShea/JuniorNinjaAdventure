@@ -26,7 +26,7 @@ public class EnemySelector : MonoBehaviour
 
     }
 
-    void DeactivateSelector()
+    public void DeactivateSelector()
     {
         selectorSprite.SetActive(false);
     }

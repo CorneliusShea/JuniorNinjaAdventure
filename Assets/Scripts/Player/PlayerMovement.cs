@@ -2,6 +2,7 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.EventSystems;
 
 public class PlayerMovement : MonoBehaviour
 {
@@ -13,7 +14,9 @@ public class PlayerMovement : MonoBehaviour
     PlayerData playerData;
     PlayerAnimations playerAnimations;
     Rigidbody2D rb;
-    
+
+    public Vector2 MoveDirection => movementDirection;
+
 
 
     private void Awake()
@@ -33,6 +36,8 @@ public class PlayerMovement : MonoBehaviour
     {
         Move();
     }
+
+
 
     void ReadMovement()
     {

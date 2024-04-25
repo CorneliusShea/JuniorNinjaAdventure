@@ -22,6 +22,7 @@ GameObject:
   - component: {fileID: 2528960641883096893}
   - component: {fileID: 8669311320744732297}
   - component: {fileID: 817031208493987846}
+  - component: {fileID: 1523824229088034913}
   m_Layer: 7
   m_Name: Beast
   m_TagString: Untagged
@@ -336,6 +337,19 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   selectorSprite: {fileID: 4681072603305381311}
+--- !u!114 &1523824229088034913
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3971333243077004553}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 99167af4951c6b84490da27411f1b17f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  health: 20
 --- !u!1 &4681072603305381311
 GameObject:
   m_ObjectHideFlags: 0

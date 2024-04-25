@@ -47,4 +47,6 @@ public class PlayerAnimations : MonoBehaviour
         anim.SetTrigger(revived);
         HandleMovingAnimation(Vector2.down);
     }
+
+
 }

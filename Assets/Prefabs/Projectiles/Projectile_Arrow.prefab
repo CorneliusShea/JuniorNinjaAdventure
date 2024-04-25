@@ -10,7 +10,8 @@ GameObject:
   m_Component:
   - component: {fileID: 6764745362335523869}
   - component: {fileID: 6642278349560140916}
-  m_Layer: 0
+  - component: {fileID: 8506764523083934719}
+  m_Layer: 8
   m_Name: Projectile_Arrow
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -68,6 +69,19 @@ CapsuleCollider2D:
   m_Offset: {x: 0.0012714863, y: -0.025133014}
   m_Size: {x: 0.37657595, y: 0.949734}
   m_Direction: 0
+--- !u!114 &8506764523083934719
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1450914320941740303}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 193dee8e6a4c45b4d9230cc387deda9a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  projectileSpeed: 2
 --- !u!1 &2366975070444322115
 GameObject:
   m_ObjectHideFlags: 0
@@ -78,7 +92,7 @@ GameObject:
   m_Component:
   - component: {fileID: 498937834201255564}
   - component: {fileID: 9068921648192508205}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Sprite
   m_TagString: Untagged
   m_Icon: {fileID: 0}

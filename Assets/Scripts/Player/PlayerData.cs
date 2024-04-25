@@ -7,10 +7,12 @@ public class PlayerData : MonoBehaviour
     [SerializeField] PlayerStats playerStats;
 
     PlayerAnimations playerAnimations;
+    PlayerMana playerMana;
 
     private void Awake()
     {
         playerAnimations = GetComponent<PlayerAnimations>();
+        playerMana = GetComponent<PlayerMana>();
     }
 
     public PlayerStats PlayerStats => playerStats;
@@ -29,5 +31,6 @@ public class PlayerData : MonoBehaviour
     {
         playerStats.ResetPlayer();
         playerAnimations.HandleMovingAnimation(Vector2.down);
+        playerMana.ResetMana();
     }
 }
