@@ -32,4 +32,15 @@ public class PlayerMana : MonoBehaviour
         CurrentMana = playerStats.CurrentMana;
     }
 
+    public bool CanRestoreMana()
+    {
+        return playerStats.CurrentMana > 0f && playerStats.CurrentMana < playerStats.MaxMana;
+    }
+
+    public void RestoreMana(float amount)
+    {
+        playerStats.CurrentMana += amount;
+        playerStats.CurrentMana = Mathf.Min(playerStats.CurrentMana, playerStats.MaxMana);
+    }
+
 }

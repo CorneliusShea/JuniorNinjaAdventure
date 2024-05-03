@@ -3,7 +3,23 @@ guid: 9ddd3dfe56a523b4e9a4871e94ce6b64
 MonoImporter:
   externalObjects: {}
   serializedVersion: 2
-  defaultReferences: []
+  defaultReferences:
+  - playerStats: {instanceID: 0}
+  - statsPanel: {instanceID: 0}
+  - statLevel: {instanceID: 0}
+  - statDamage: {instanceID: 0}
+  - statCChance: {instanceID: 0}
+  - statCDamage: {instanceID: 0}
+  - statTotalXP: {instanceID: 0}
+  - statCurrentXP: {instanceID: 0}
+  - statNextLevelXP: {instanceID: 0}
+  - healthBar: {instanceID: 0}
+  - manaBar: {instanceID: 0}
+  - xpBar: {instanceID: 0}
+  - levelText: {instanceID: 0}
+  - healthText: {instanceID: 0}
+  - manaText: {instanceID: 0}
+  - xpText: {instanceID: 0}
   executionOrder: 0
   icon: {instanceID: 0}
   userData: 

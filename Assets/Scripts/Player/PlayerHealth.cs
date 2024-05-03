@@ -33,4 +33,21 @@ public class PlayerHealth : MonoBehaviour, IDamagable
     {
         playerAnimations.HandleDeadAnimation();
     }
+
+    public bool CanRestoreHealth()
+    {
+        return playerStats.CurrentHealth > 0f && playerStats.CurrentHealth < playerStats.MaxHealth;
+    }
+
+    public void RestoreHealth(float amount)
+    {
+        playerStats.CurrentHealth += amount;
+
+        if (playerStats.CurrentHealth >= playerStats.MaxHealth)
+        {
+            playerStats.CurrentHealth = playerStats.MaxHealth;
+        }
+    }
+
+
 }

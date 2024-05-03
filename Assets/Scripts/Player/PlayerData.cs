@@ -5,25 +5,35 @@ using UnityEngine;
 public class PlayerData : MonoBehaviour
 {
     [SerializeField] PlayerStats playerStats;
+    [SerializeField] Item_HealthPotion healthPotion;
+
+    
 
     PlayerAnimations playerAnimations;
     PlayerMana playerMana;
+    PlayerHealth playerHealth;
+
+    public PlayerStats PlayerStats => playerStats;
+    public PlayerHealth PlayerHealth => playerHealth;
+
+    public PlayerMana PlayerMana => playerMana;
 
     private void Awake()
     {
         playerAnimations = GetComponent<PlayerAnimations>();
         playerMana = GetComponent<PlayerMana>();
+        playerHealth = GetComponent<PlayerHealth>();
     }
-
-    public PlayerStats PlayerStats => playerStats;
 
     private void Update()
     {
-        if (Input.GetKeyDown(KeyCode.Return))
+        if (Input.GetKeyDown(KeyCode.H))
         {
-            if (playerStats.CurrentHealth <= 0)
-                PlayerReset();
-            
+            var result = healthPotion.UseItem();
+            if (result)
+            {
+                print("Used health potion");
+            }
         }
     }
 

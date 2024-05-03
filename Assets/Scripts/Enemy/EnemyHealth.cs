@@ -11,6 +11,8 @@ public class EnemyHealth : MonoBehaviour, IDamagable
     Animator anim;
     EnemyBrain brain;
     EnemySelector selector;
+    EnemyLoot enemyLoot;
+
     public float CurrentHealth { get; private set; }
 
     public static event Action OnEnemyDead;
@@ -21,6 +23,7 @@ public class EnemyHealth : MonoBehaviour, IDamagable
         anim = GetComponent<Animator>();
         brain = GetComponent<EnemyBrain>();
         selector = GetComponent<EnemySelector>();
+        enemyLoot = GetComponent<EnemyLoot>();
     }
 
     private void Start()
@@ -31,18 +34,28 @@ public class EnemyHealth : MonoBehaviour, IDamagable
     public void TakeDamage(float amount)
     {
         CurrentHealth -= amount;
+
         if (CurrentHealth <= 0f)
         {
-            anim.SetTrigger("gotKilled");
-            brain.enabled = false;
-            selector.DeactivateSelector();
-            gameObject.layer = LayerMask.NameToLayer("Ignore Raycast");
-            OnEnemyDead?.Invoke();
+            
         }
         else
         {
             DamageManager.i.ShowDamageText(amount, transform);
         }
+
     }
+
+    public void DisableEnemy()
+    {
+        anim.SetTrigger("gotKilled");
+        brain.enabled = false;
+        selector.DeactivateSelector();
+        gameObject.layer = LayerMask.NameToLayer("Ignore Raycast");
+        OnEnemyDead?.Invoke();
+        GameManager.i.AddPlayerXP(enemyLoot.XPDropped);
+
+    }
+
 
 }

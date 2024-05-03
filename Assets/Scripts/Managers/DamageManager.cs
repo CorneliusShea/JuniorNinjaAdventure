@@ -2,16 +2,9 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class DamageManager : MonoBehaviour
+public class DamageManager : Singleton<DamageManager>
 {
-    public static DamageManager i;
     [SerializeField] DamagePopup damagePopupPrefab;
-
-
-    private void Awake()
-    {
-        i = this;
-    }
 
     public void ShowDamageText(float damageAmount, Transform parent)
     {

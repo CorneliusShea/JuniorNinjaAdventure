@@ -9,6 +9,7 @@ public class PlayerAttack : MonoBehaviour
     private PlayerAnimations playerAnim;
     private EnemyBrain target;
     private Coroutine attackCoroutine;
+    [SerializeField] public PlayerStats playerStats;
 
     [SerializeField] Weapon initialWeapon;
     [SerializeField] Transform[] attackPositions;
@@ -19,7 +20,11 @@ public class PlayerAttack : MonoBehaviour
     private PlayerMovement playerMovement;
     private PlayerMana playerMana;
 
-    
+    [SerializeField] ParticleSystem slashFX;
+    [SerializeField] float attackRange;
+    public Weapon CurrentWeapon { get; set; }
+
+
 
 
     private void Awake()
@@ -31,8 +36,10 @@ public class PlayerAttack : MonoBehaviour
 
     private void Start()
     {
-        print("Start");
-        actions.NewAttack.NewClick.performed += ctx => Attack();
+        EquipWeapon(initialWeapon);
+
+        CurrentWeapon = initialWeapon;
+        actions.Attack.ExecuteAttack.performed += ctx => Attack();
         SelectionManager.OnEnemySelect += SetCurrentEnemy;
         SelectionManager.OnNoSelection += ResetCurrentEnemy;
         EnemyHealth.OnEnemyDead += KilledEnemy;
@@ -41,6 +48,7 @@ public class PlayerAttack : MonoBehaviour
 
     private void Update()
     {
+
         GetFirePosition();
     }
 
@@ -68,18 +76,22 @@ public class PlayerAttack : MonoBehaviour
 
     IEnumerator AttackCo()
     {
-        if (currentAttackPosition == null || playerMana.CurrentMana < initialWeapon.RequiredMana)
+        if (currentAttackPosition == null)
             yield break;
 
+        if (CurrentWeapon.WeaponType == WeaponType.MAGIC)
+        {
+            if (playerMana.CurrentMana < CurrentWeapon.RequiredMana)
+                yield break;
+            MagicAttack();
+        }
+        else
+        {
+            MeleeAttack();
+        }
 
-        Quaternion rotation = Quaternion.Euler(new Vector3(0f, 0f, currentAttackRotation));
-        Projectile projectile = Instantiate(initialWeapon.ProjectilePrefab,
-                                            currentAttackPosition.position, rotation);
 
-        playerMana.UseMana(initialWeapon.RequiredMana);
-        projectile.Direction = Vector3.up;
 
-        projectile.Damage = initialWeapon.Damage;
 
         playerAnim.HandleAttackAnimation(true);
         yield return new WaitForSeconds(0.25f);
@@ -114,9 +126,63 @@ public class PlayerAttack : MonoBehaviour
         }
     }
 
+    void MeleeAttack()
+    {
+        slashFX.transform.position = currentAttackPosition.position;
+        slashFX.Play();
+
+        var distanceToTarget = Vector3.Distance(target.transform.position, transform.position);
+
+        if (distanceToTarget <= attackRange)
+            target.GetComponent<IDamagable>()?.TakeDamage(GetAttackDamage());
+
+    }
+
+    void MagicAttack()
+    {
+        Quaternion rotation = Quaternion.Euler(new Vector3(0f, 0f, currentAttackRotation));
+        Projectile projectile = Instantiate(CurrentWeapon.ProjectilePrefab,
+                                            currentAttackPosition.position, rotation);
+
+        playerMana.UseMana(CurrentWeapon.RequiredMana);
+        projectile.Direction = Vector3.up;
+
+        projectile.Damage = GetAttackDamage();
+    }
+
+    float GetAttackDamage()
+    {
+        var damage = playerStats.BaseDamage;
+        damage += CurrentWeapon.Damage;
+
+        var critChance = Random.Range(0, 100);
+        if (critChance <= playerStats.CriticalChance)
+            damage += damage * (playerStats.CriticalDamage / 100);
+
+        return damage;
+    }
+
+    void EquipWeapon(Weapon newWeapon)
+    {
+        CurrentWeapon = newWeapon;
+        playerStats.TotalDamage = playerStats.BaseDamage + CurrentWeapon.Damage;
+
+    }
+
+
     private void KilledEnemy()
     {
         target = null;
+    }
+
+    private void OnEnable()
+    {
+        actions.Enable();
+    }
+
+    private void OnDisable()
+    {
+        actions.Disable();
     }
 
 
