@@ -5,12 +5,17 @@ using UnityEngine;
 
 public class Inventory : MonoBehaviour
 {
-    private int inventorySize = 10;
+    [SerializeField] InventoryItem testItem;
+    [SerializeField] InventoryItem[] inventoryItems;
+    [SerializeField] int inventorySize;
+
+
     public int InventorySize => inventorySize;
 
     private void Start()
     {
         inventoryItems = new InventoryItem[inventorySize];
+        CheckSlotForItem();
     }
 
 
@@ -18,11 +23,11 @@ public class Inventory : MonoBehaviour
     {
         if(Input.GetKeyDown(KeyCode.T))
         {
-            AddItem(testItem, 15);
+            AddItem(testItem, 1);
         }
     }
 
-    void AddItem(InventoryItem item, int quantity)
+    public void AddItem(InventoryItem item, int quantity)
     {
         if (item == null || quantity == 0)
             return;
@@ -41,12 +46,13 @@ public class Inventory : MonoBehaviour
 
                     if (inventoryItems[index].Quantity > currentMaxStack)
                     {
-                        int diff = inventroyItems[index].Quantity - currentMaxStack;
+                        int diff = inventoryItems[index].Quantity - currentMaxStack;
                         inventoryItems[index].Quantity = currentMaxStack;
                         AddItem(item, diff);
                     }
 
                     InventoryUI.i.DrawSlot(inventoryItems[index], index);
+                    return;
                 }
             }
         }
@@ -59,16 +65,20 @@ public class Inventory : MonoBehaviour
             AddItem(item, remainingAmout);
     }
 
+    public void removeItem(int index)
+    {
+        if (inventoryItems[index] == null)
+            return;
 
-
-
-
+        inventoryItems[index] = null;
+        InventoryUI.i.DrawSlot(null, index);
+    }
 
 
     List<int>CheckItemStock(string itemID)
     {
         List<int> itemIndexes = new List<int>();
-        for(int i = 0; i < InventoryItems.Length;i++)
+        for(int i = 0; i < inventoryItems.Length;i++)
         {
             if (inventoryItems[i] == null)
                 continue;
@@ -94,6 +104,15 @@ public class Inventory : MonoBehaviour
             inventoryItems[i].Quantity = quantity;
             InventoryUI.DrawSlot(inventoryItems[i], i);
             return;
+        }
+    }
+
+    void CheckSlotForItem()
+    {
+        for(int i = 0; i < inventorySize; i++)
+        {
+            if (inventoryItems[i] == null)
+                InventoryUI.i.DrawSlot(null, i);
         }
     }
 
