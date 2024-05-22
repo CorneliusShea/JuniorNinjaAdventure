@@ -25,8 +25,6 @@ public class PlayerAttack : MonoBehaviour
     public Weapon CurrentWeapon { get; set; }
 
 
-
-
     private void Awake()
     {
         actions = new PlayerActions();
@@ -36,7 +34,7 @@ public class PlayerAttack : MonoBehaviour
 
     private void Start()
     {
-        EquipWeapon(initialWeapon);
+        WeaponManager.i.EquipWeapon(initialWeapon);
 
         CurrentWeapon = initialWeapon;
         actions.Attack.ExecuteAttack.performed += ctx => Attack();
@@ -162,7 +160,7 @@ public class PlayerAttack : MonoBehaviour
         return damage;
     }
 
-    void EquipWeapon(Weapon newWeapon)
+    public void EquipWeapon(Weapon newWeapon)
     {
         CurrentWeapon = newWeapon;
         playerStats.TotalDamage = playerStats.BaseDamage + CurrentWeapon.Damage;

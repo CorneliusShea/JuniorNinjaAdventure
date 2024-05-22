@@ -11,20 +11,22 @@ public enum ItemType
 [CreateAssetMenu(menuName = "Items/Item")]
 public class InventoryItem : ScriptableObject
 {
+
     public string ID;
     public string Name;
     public Sprite Icon;
-    [TextArea] public string Description; 
+    [TextArea] public string Description;
 
-    public ItemType Type;
+    public ItemType ItemType;
+
     public bool IsConsumable;
     public bool IsStackable;
-
     public int MaxStack;
+
 
     [HideInInspector] public int Quantity;
 
-    public InventoryItem CreateItem()
+    public InventoryItem CopyItem()
     {
         InventoryItem item = Instantiate(this);
         return item;
@@ -34,14 +36,14 @@ public class InventoryItem : ScriptableObject
     {
         return true;
     }
-
     public virtual void EquipItem()
     {
 
     }
-
     public virtual void RemoveItem()
     {
 
     }
+
+
 }

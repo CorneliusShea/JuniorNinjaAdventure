@@ -1,6 +1,8 @@
 using System.Collections;
 using System.Collections.Generic;
+using TMPro;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class PlayerData : MonoBehaviour
 {
@@ -18,11 +20,16 @@ public class PlayerData : MonoBehaviour
 
     public PlayerMana PlayerMana => playerMana;
 
+    PlayerAttack playerAttack;
+
+    public PlayerAttack PlayerAttack => playerAttack;
+
     private void Awake()
     {
         playerAnimations = GetComponent<PlayerAnimations>();
         playerMana = GetComponent<PlayerMana>();
         playerHealth = GetComponent<PlayerHealth>();
+        playerAttack = GetComponent<PlayerAttack>();
     }
 
     private void Update()
@@ -43,4 +50,9 @@ public class PlayerData : MonoBehaviour
         playerAnimations.HandleMovingAnimation(Vector2.down);
         playerMana.ResetMana();
     }
+
+    
+
+
+
 }
