@@ -12,10 +12,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 580874cc6a2860746bde1910e72974b8, type: 3}
   m_Name: PlayerStats
   m_EditorClassIdentifier: 
-  Strength: 0
-  Dexterity: 0
-  Intelligence: 0
-  AvailablePoints: 0
+  Strength: 10
+  Dexterity: 10
+  Intelligence: 10
+  AvailablePoints: 10
   CurrentLevel: 1
   TotalXP: 0
   TotalDamage: 4
