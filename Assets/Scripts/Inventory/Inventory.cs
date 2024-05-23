@@ -8,7 +8,7 @@ public class Inventory : Singleton<Inventory>
 {
     [SerializeField] InventoryItem testItem;
     [SerializeField] InventoryItem[] inventoryItems;
-    [SerializeField] int inventorySize;
+    [SerializeField] int inventorySize = 24;
 
     [SerializeField] GameContent gameContent;
 

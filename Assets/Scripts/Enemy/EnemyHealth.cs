@@ -13,6 +13,8 @@ public class EnemyHealth : MonoBehaviour, IDamagable
     EnemySelector selector;
     EnemyLoot enemyLoot;
 
+    Rigidbody2D rb;
+
     public float CurrentHealth { get; private set; }
 
     public static event Action OnEnemyDead;
@@ -24,6 +26,8 @@ public class EnemyHealth : MonoBehaviour, IDamagable
         brain = GetComponent<EnemyBrain>();
         selector = GetComponent<EnemySelector>();
         enemyLoot = GetComponent<EnemyLoot>();
+
+        rb = GetComponent<Rigidbody2D>();
     }
 
     private void Start()
@@ -37,7 +41,7 @@ public class EnemyHealth : MonoBehaviour, IDamagable
 
         if (CurrentHealth <= 0f)
         {
-            
+            DisableEnemy();
         }
         else
         {
@@ -51,9 +55,10 @@ public class EnemyHealth : MonoBehaviour, IDamagable
         anim.SetTrigger("gotKilled");
         brain.enabled = false;
         selector.DeactivateSelector();
-        gameObject.layer = LayerMask.NameToLayer("Ignore Raycast");
+        rb.bodyType = RigidbodyType2D.Static;
         OnEnemyDead?.Invoke();
         GameManager.i.AddPlayerXP(enemyLoot.XPDropped);
+
 
     }
 

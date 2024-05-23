@@ -30,17 +30,30 @@ public class SelectionManager : MonoBehaviour
 
             if(hit.collider != null)
             {
-                EnemyBrain enemy = hit.collider.GetComponent<EnemyBrain>();
+                //EnemyBrain enemy = hit.collider.GetComponent<EnemyBrain>();
 
-                if(enemy != null)
-                {
-                    OnEnemySelect?.Invoke(enemy);
+                
+                   if (hit.collider.TryGetComponent(out EnemyBrain enemy))
+                    {
+                    if (enemy.GetComponent<EnemyHealth>().CurrentHealth <= 0f) 
+                    {
+                        EnemyLoot enemyLoot = enemy.GetComponent<EnemyLoot>(); 
+                        LootManager.i.ShowLoot(enemyLoot);                   
+                    }
+                    else
+                    {
+                        // Select the enemy
+                        OnEnemySelect?.Invoke(enemy);  
+                    }
+
                 }
+
             }
             else
             {
                 OnNoSelection?.Invoke();
             }
+
         }
     }
 }
