@@ -20,7 +20,7 @@ public class InventoryUI : Singleton<InventoryUI>
     List<InventorySlot> slotList = new List<InventorySlot>();
     public InventorySlot CurrentSlot { get; set; }
 
-    public override void Awake()
+    protected override void Awake()
     {
         base.Awake();
         InitInventory();
@@ -30,15 +30,8 @@ public class InventoryUI : Singleton<InventoryUI>
 
     private void Start()
     {
-        InitInventory();
         InventorySlot.OnSlotSelected += SlotSelected;
     }
-
-    void SlotSelect(int index)
-    {
-
-    }
-
 
     public void ToggleInventory()
     {
@@ -71,6 +64,7 @@ public class InventoryUI : Singleton<InventoryUI>
 
     public void RemoveItem()
     {
+        if (CurrentSlot == null) return;
         Inventory.i.RemoveItem(CurrentSlot.Index);
     }
 
@@ -78,7 +72,7 @@ public class InventoryUI : Singleton<InventoryUI>
     {
         InventorySlot slot = slotList[index];
 
-        if (item ==null)
+        if (item == null)
         {
             slot.ShowSlotInformation(false);
             return;
@@ -91,6 +85,7 @@ public class InventoryUI : Singleton<InventoryUI>
 
     public void UseItem()
     {
+        if (CurrentSlot == null) return;
         Inventory.i.UseItem(CurrentSlot.Index);
     }
 

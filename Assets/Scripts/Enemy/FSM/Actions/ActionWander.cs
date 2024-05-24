@@ -42,7 +42,6 @@ public class ActionWander : FSM_Action
         var randomY = Random.Range(-moveDestination.y, moveDestination.y);
 
         moveDestination = transform.position + new Vector3(randomX, randomY);
-        print(moveDestination);
     }
 
     private void OnDrawGizmosSelected()

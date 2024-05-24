@@ -46,8 +46,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   testItem: {fileID: 11400000, guid: ce3134d96219c9c4fa80d619a525abe4, type: 2}
-  inventoryItems:
-  - {fileID: 11400000, guid: 1c0272d5ac65eec4983b2739dd5053b5, type: 2}
+  inventoryItems: []
   inventorySize: 24
   gameContent: {fileID: 11400000, guid: 92f3b4372fc14784ba44f50e7231d4ae, type: 2}
 --- !u!114 &7820192787157215488

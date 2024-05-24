@@ -10,7 +10,6 @@ GameObject:
   m_Component:
   - component: {fileID: 6826443333479642680}
   - component: {fileID: 8923274787682077833}
-  - component: {fileID: 7875938830484037060}
   m_Layer: 0
   m_Name: UIManager
   m_TagString: Untagged
@@ -65,22 +64,3 @@ MonoBehaviour:
   strength: {fileID: 0}
   dexterity: {fileID: 0}
   intelligence: {fileID: 0}
---- !u!114 &7875938830484037060
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5112097851903412176}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 941c296a67bff2849a6ac23173ae39e2, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  slotPrefab: {fileID: 0}
-  container: {fileID: 0}
-  inventoryPanel: {fileID: 0}
-  descriptionPanel: {fileID: 0}
-  itemIcon: {fileID: 0}
-  itemName: {fileID: 0}
-  itemDescription: {fileID: 0}
