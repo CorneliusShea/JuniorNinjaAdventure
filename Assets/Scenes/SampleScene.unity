@@ -114783,11 +114783,19 @@ PrefabInstance:
       propertyPath: m_Camera
       value: 
       objectReference: {fileID: 519420031}
+    - target: {fileID: 2208358290160266208, guid: 55e045bedf006454bb80528ce4616e91, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      value: 
+      objectReference: {fileID: 1272844319}
     - target: {fileID: 2600328250546513347, guid: 55e045bedf006454bb80528ce4616e91, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
       objectReference: {fileID: 1272844319}
     - target: {fileID: 4117400545451279038, guid: 55e045bedf006454bb80528ce4616e91, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      value: 
+      objectReference: {fileID: 1272844319}
+    - target: {fileID: 5224253965820654213, guid: 55e045bedf006454bb80528ce4616e91, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
       objectReference: {fileID: 0}
