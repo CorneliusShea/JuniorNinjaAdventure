@@ -26,7 +26,7 @@ MonoBehaviour:
   MaxHealth: 10
   CurrentMana: 10
   MaxMana: 10
-  CurrentXP: 0
+  CurrentXP: 10
   NextLevelXP: 100
   InitialLevelXP: 100
-  XPMultiplier: 50
+  XPMultiplier: 5

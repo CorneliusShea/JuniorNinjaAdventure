@@ -8,12 +8,12 @@ public class PlayerXP : MonoBehaviour
 
     private void Awake()
     {
-        playerStats = GetComponent<PlayerStats>();
+        
     }
 
     public void AddXP(float amount)
     {
-        playerStats.TotalXP += amount;        // Add this line
+        playerStats.TotalXP += amount;       
         playerStats.CurrentXP += amount;
 
         while (playerStats.CurrentXP >= playerStats.NextLevelXP)

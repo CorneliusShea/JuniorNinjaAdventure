@@ -150,6 +150,54 @@ public partial class @PlayerActions: IInputActionCollection2, IDisposable
                     ""isPartOfComposite"": false
                 }
             ]
+        },
+        {
+            ""name"": ""Dialog"",
+            ""id"": ""11a28119-f2c5-4a85-9433-7192f9e48883"",
+            ""actions"": [
+                {
+                    ""name"": ""Interact"",
+                    ""type"": ""Button"",
+                    ""id"": ""b32fa9fd-67e9-4da2-9670-df22b15cbeab"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""Continue"",
+                    ""type"": ""Button"",
+                    ""id"": ""4cb396de-ff75-42f1-9d73-5d8d26cfd067"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
+                }
+            ],
+            ""bindings"": [
+                {
+                    ""name"": """",
+                    ""id"": ""d9607859-0ae8-47a5-8017-52d140ff4880"",
+                    ""path"": ""<Keyboard>/r"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Interact"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""7eabe632-7ec9-422c-90e4-e27444e6c7bc"",
+                    ""path"": ""<Keyboard>/t"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Continue"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                }
+            ]
         }
     ],
     ""controlSchemes"": []
@@ -163,6 +211,10 @@ public partial class @PlayerActions: IInputActionCollection2, IDisposable
         // NewAttack
         m_NewAttack = asset.FindActionMap("NewAttack", throwIfNotFound: true);
         m_NewAttack_NewClick = m_NewAttack.FindAction("NewClick", throwIfNotFound: true);
+        // Dialog
+        m_Dialog = asset.FindActionMap("Dialog", throwIfNotFound: true);
+        m_Dialog_Interact = m_Dialog.FindAction("Interact", throwIfNotFound: true);
+        m_Dialog_Continue = m_Dialog.FindAction("Continue", throwIfNotFound: true);
     }
 
     public void Dispose()
@@ -358,6 +410,60 @@ public partial class @PlayerActions: IInputActionCollection2, IDisposable
         }
     }
     public NewAttackActions @NewAttack => new NewAttackActions(this);
+
+    // Dialog
+    private readonly InputActionMap m_Dialog;
+    private List<IDialogActions> m_DialogActionsCallbackInterfaces = new List<IDialogActions>();
+    private readonly InputAction m_Dialog_Interact;
+    private readonly InputAction m_Dialog_Continue;
+    public struct DialogActions
+    {
+        private @PlayerActions m_Wrapper;
+        public DialogActions(@PlayerActions wrapper) { m_Wrapper = wrapper; }
+        public InputAction @Interact => m_Wrapper.m_Dialog_Interact;
+        public InputAction @Continue => m_Wrapper.m_Dialog_Continue;
+        public InputActionMap Get() { return m_Wrapper.m_Dialog; }
+        public void Enable() { Get().Enable(); }
+        public void Disable() { Get().Disable(); }
+        public bool enabled => Get().enabled;
+        public static implicit operator InputActionMap(DialogActions set) { return set.Get(); }
+        public void AddCallbacks(IDialogActions instance)
+        {
+            if (instance == null || m_Wrapper.m_DialogActionsCallbackInterfaces.Contains(instance)) return;
+            m_Wrapper.m_DialogActionsCallbackInterfaces.Add(instance);
+            @Interact.started += instance.OnInteract;
+            @Interact.performed += instance.OnInteract;
+            @Interact.canceled += instance.OnInteract;
+            @Continue.started += instance.OnContinue;
+            @Continue.performed += instance.OnContinue;
+            @Continue.canceled += instance.OnContinue;
+        }
+
+        private void UnregisterCallbacks(IDialogActions instance)
+        {
+            @Interact.started -= instance.OnInteract;
+            @Interact.performed -= instance.OnInteract;
+            @Interact.canceled -= instance.OnInteract;
+            @Continue.started -= instance.OnContinue;
+            @Continue.performed -= instance.OnContinue;
+            @Continue.canceled -= instance.OnContinue;
+        }
+
+        public void RemoveCallbacks(IDialogActions instance)
+        {
+            if (m_Wrapper.m_DialogActionsCallbackInterfaces.Remove(instance))
+                UnregisterCallbacks(instance);
+        }
+
+        public void SetCallbacks(IDialogActions instance)
+        {
+            foreach (var item in m_Wrapper.m_DialogActionsCallbackInterfaces)
+                UnregisterCallbacks(item);
+            m_Wrapper.m_DialogActionsCallbackInterfaces.Clear();
+            AddCallbacks(instance);
+        }
+    }
+    public DialogActions @Dialog => new DialogActions(this);
     public interface IMovementActions
     {
         void OnMove(InputAction.CallbackContext context);
@@ -369,5 +475,10 @@ public partial class @PlayerActions: IInputActionCollection2, IDisposable
     public interface INewAttackActions
     {
         void OnNewClick(InputAction.CallbackContext context);
+    }
+    public interface IDialogActions
+    {
+        void OnInteract(InputAction.CallbackContext context);
+        void OnContinue(InputAction.CallbackContext context);
     }
 }

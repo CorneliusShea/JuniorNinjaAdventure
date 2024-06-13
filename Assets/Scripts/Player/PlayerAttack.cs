@@ -62,9 +62,7 @@ public class PlayerAttack : MonoBehaviour
 
     void Attack()
     {
-        print("Attack");
         if (target == null) return;
-        print("Attacked");
         if (attackCoroutine != null)
             StopCoroutine(attackCoroutine);
 
